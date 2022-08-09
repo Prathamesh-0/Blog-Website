@@ -26,7 +26,7 @@ const postSchema = new mongoose.Schema({
   }
 });
 
-const Post = mongoose.model("Post", postSchema);        // Creating/defining a collection
+const Post = mongoose.model("Post", postSchema);
 
 
 
@@ -97,19 +97,12 @@ app.get("/posts/:postId", function(req, res){
 
 });
 
-  /*
-  posts.forEach(function(post){
-    const storedTitle = _.lowerCase(post.title);
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port);
 
-    if (storedTitle === requestedTitle) {
-      res.render("post", {
-        title: post.title,
-        content: post.content
-      });
-    }
-  });
-  */
-
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Server started on port 3000");
+app.listen(port, function() {
+  console.log("Server started successfully");
 });
